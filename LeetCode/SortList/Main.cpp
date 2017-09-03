@@ -4,5 +4,6 @@
 int main()
 {
 	SortList* pS = new SortList();
-	pS->TestSortList(new ListNode(0));
+	//pS->TestMergeSortList(new ListNode(0));
+	pS->TestInsertionSortList(new ListNode(0));
 }

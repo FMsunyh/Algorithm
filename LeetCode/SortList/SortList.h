@@ -1,12 +1,6 @@
 #pragma once
 #include <iostream>
-//Definition for singly - linked list.
-struct ListNode
-{
-	int val;
-	ListNode *next;
-	ListNode(int x) : val(x), next(nullptr) {}
-};
+#include "Common.h"
 
 
 class SortList
@@ -16,5 +10,9 @@ public:
 
 	ListNode* MergeTwoLists(ListNode* leftHead, ListNode* rightHead);
 
-	bool TestSortList(ListNode* p);
+	ListNode* InsertionSortList(ListNode* head);
+
+	bool TestMergeSortList(ListNode* p);
+
+	bool SortList::TestInsertionSortList(ListNode* p);
 };
