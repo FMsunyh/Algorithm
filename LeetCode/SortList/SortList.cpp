@@ -58,38 +58,13 @@ ListNode* SortList::MergeTwoLists(ListNode* leftHead, ListNode* rightHead)
 
 ListNode* SortList::InsertionSortList(ListNode* head)
 {
-	/*if (nullptr == head || head->next == nullptr)
-		return head;
-
-	ListNode* pCur = head->next;
-
-	while (pCur)
-	{
-		ListNode* pCursor = head;
-
-		while (pCursor != pCur)
-		{
-			if (pCur->val > pCursor->val)
-			{
-				pCursor = pCursor->next;
-			}
-			else
-			{
-				int tmp = pCursor->val;
-				pCursor->val = pCur->val;
-				pCur->val = tmp;
-				break;
-			}
-		}
-
-		pCur = pCur->next;
-	}
-
-	return head;*/
-
-
 	if (nullptr == head || head->next == nullptr)
 		return head;
+
+	//note: if head is the first element, we need to create the head (in Leetcode website).
+
+	//ListNode* phead = new ListNode(0);
+	//phead->next = head;
 
 	ListNode* pPerCur = head->next;
 	ListNode* pCur = pPerCur->next;
