@@ -11,7 +11,7 @@ ListNode* SortList::MergeSort(ListNode* pHead)
 	{
 		pQuickPoint = pQuickPoint->next->next;
 		pSlowPoint = pSlowPoint->next;
-	} 
+	}
 	ListNode* pMiddle = pSlowPoint->next;
 	pSlowPoint->next = nullptr;
 
@@ -73,3 +73,37 @@ bool SortList::TestSortList(ListNode* p)
 
 	return pSortlist != nullptr;
 }
+
+//
+//class Solution {
+//public:
+//	ListNode* sortList(ListNode* head) {
+//		if (head == NULL || head->next == NULL)
+//			return head;
+//		ListNode* preHead = new ListNode(0);
+//		preHead->next = head;
+//		quickSortList(preHead, NULL);
+//		return preHead->next;
+//	}
+//	void quickSortList(ListNode* preHead, ListNode* tail) {
+//		if (preHead->next == tail || preHead->next->next == tail)
+//			return;
+//		ListNode* pre = preHead;
+//		ListNode* cur = preHead->next;
+//		ListNode* pivot = cur;
+//		while (cur->next && cur->next != tail) {
+//			if (pivot->val > cur->next->val) {
+//				ListNode* temp = pre->next;
+//				pre->next = cur->next;
+//				cur->next = cur->next->next;
+//				pre->next->next = temp;
+//			}
+//			else cur = cur->next;
+//		}
+//		quickSortList(preHead, pivot);
+//		/* Here is the trick. */
+//		while (pivot->next != tail && pivot->next->val == pivot->val)
+//			pivot = pivot->next;
+//		if (pivot->next != tail) quickSortList(pivot, tail);
+//	}
+//};
