@@ -62,7 +62,6 @@ ListNode* SortList::InsertionSortList(ListNode* head)
 		return head;
 
 	//note: if head is the first element, we need to create the head (in Leetcode website).
-
 	//ListNode* phead = new ListNode(0);
 	//phead->next = head;
 
