@@ -55,7 +55,56 @@ ListNode* SortList::MergeTwoLists(ListNode* leftHead, ListNode* rightHead)
 	return newhead->next;
 }
 
-bool SortList::TestSortList(ListNode* p)
+
+ListNode* SortList::InsertionSortList(ListNode* head)
+{
+	if (nullptr == head || head->next == nullptr)
+		return head;
+
+	//note: if head is the first element, we need to create the head (in Leetcode website).
+
+	//ListNode* phead = new ListNode(0);
+	//phead->next = head;
+
+	ListNode* pPerCur = head->next;
+	ListNode* pCur = pPerCur->next;
+
+	while (pCur)
+	{
+		ListNode* pPerCursor = head;
+		ListNode* pCursor = head->next;
+
+		while (pCursor != pCur)
+		{
+			if (pCur->val > pCursor->val)
+			{
+				pPerCursor = pCursor;
+				pCursor = pCursor->next;
+			}
+			else
+			{
+				pPerCur->next = pCur->next;
+				pPerCursor->next = pCur;				
+				pCur->next = pCursor;
+
+				pCur = pPerCur->next;
+				break;
+			}
+		}
+
+		if (pCursor == pCur)
+		{
+			pPerCur = pCur;
+			pCur = pCur->next;
+		}
+	}
+
+	return head->next;
+}
+
+
+
+bool SortList::TestMergeSortList(ListNode* p)
 {
 	ListNode* pl1 = new ListNode(5);
 	ListNode* pl2 = new ListNode(1);
@@ -64,11 +113,33 @@ bool SortList::TestSortList(ListNode* p)
 	pl1->next = pl2;
 	pl2->next = pl3;
 	pl3->next = pl4;
+	p->next = pl1;
 	SortList* pS = new SortList();
 	ListNode* pSortlist = nullptr;
 	if (nullptr != pS)
 	{
-		pSortlist = pS->MergeSort(pl1);
+		pSortlist = pS->MergeSort(p);
+	}
+
+	return pSortlist != nullptr;
+}
+
+
+bool SortList::TestInsertionSortList(ListNode* p)
+{
+	ListNode* pl1 = new ListNode(3);
+	ListNode* pl2 = new ListNode(4);
+	ListNode* pl3 = new ListNode(1);
+	ListNode* pl4 = new ListNode(4);
+	pl1->next = pl2;
+	pl2->next = pl3;
+	//pl3->next = pl4;
+	p->next = pl1;
+	SortList* pS = new SortList();
+	ListNode* pSortlist = nullptr;
+	if (nullptr != pS)
+	{
+		pSortlist = pS->InsertionSortList(p);
 	}
 
 	return pSortlist != nullptr;
