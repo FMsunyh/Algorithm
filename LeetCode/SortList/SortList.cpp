@@ -73,25 +73,33 @@ ListNode* SortList::InsertionSortList(ListNode* head)
 		ListNode* pPerCursor = head;
 		ListNode* pCursor = head->next;
 
-		while (pCursor != pCur)
+		if (pCur->val < pPerCur->val)
 		{
-			if (pCur->val > pCursor->val)
+			while (pCursor != pCur)
 			{
-				pPerCursor = pCursor;
-				pCursor = pCursor->next;
-			}
-			else
-			{
-				pPerCur->next = pCur->next;
-				pPerCursor->next = pCur;				
-				pCur->next = pCursor;
+				if (pCur->val > pCursor->val)
+				{
+					pPerCursor = pCursor;
+					pCursor = pCursor->next;
+				}
+				else
+				{
+					pPerCur->next = pCur->next;
+					pPerCursor->next = pCur;
+					pCur->next = pCursor;
 
-				pCur = pPerCur->next;
-				break;
+					pCur = pPerCur->next;
+					break;
+				}
+			}
+
+			if (pCursor == pCur)
+			{
+				pPerCur = pCur;
+				pCur = pCur->next;
 			}
 		}
-
-		if (pCursor == pCur)
+		else
 		{
 			pPerCur = pCur;
 			pCur = pCur->next;
@@ -134,12 +142,10 @@ bool SortList::TestInsertionSortList(ListNode* p)
 	pl2->next = pl3;
 	//pl3->next = pl4;
 	p->next = pl1;
-	SortList* pS = new SortList();
+
 	ListNode* pSortlist = nullptr;
-	if (nullptr != pS)
-	{
-		pSortlist = pS->InsertionSortList(p);
-	}
+
+	pSortlist = InsertionSortList(p);
 
 	return pSortlist != nullptr;
 }
